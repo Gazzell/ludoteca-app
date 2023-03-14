@@ -1,8 +1,24 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders home page by default", () => {
+  render(
+    <MemoryRouter initialEntries={["/"]}>
+      <App />
+    </MemoryRouter>
+  );
+  const homePage = screen.getByText(/Home/i);
+  expect(homePage).toBeInTheDocument();
+});
+
+test("renders login page when navigating to /login", () => {
+  render(
+    <MemoryRouter initialEntries={["/login"]}>
+      <App />
+    </MemoryRouter>
+  );
+  const loginPage = screen.getByText(/Login/i);
+  expect(loginPage).toBeInTheDocument();
 });
