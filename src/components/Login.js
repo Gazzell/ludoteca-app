@@ -27,11 +27,14 @@ export function Login() {
   };
   return (
     <div>
+      <div>Login</div>
+
       {error && <p>{error}</p>}
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
+          id="email"
           type="email"
           name="email"
           placeholder="youremail@company.ltd"
