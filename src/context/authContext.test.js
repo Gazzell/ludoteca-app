@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { AuthProvider, useAuth } from "./authContext";
+import React from "react";
 
 describe("AuthContext", () => {
   it("throws an error when a component not covered with in AuthProvider", () => {
@@ -20,17 +21,37 @@ describe("AuthContext", () => {
     );
     expect(screen.getByText("Test")).toBeInTheDocument();
   });
-
-  it("useAuth returns the user object from the context", () => {
-    function UserComponent() {
-      const { user } = useAuth();
-      return <div>{user.login.toString()}</div>;
+  it("should provide a login function and user state", async () => {
+    function TestComponent() {
+      const { login, user } = useAuth();
+      return (
+        <div>
+          <span data-testid="user">{user ? user.email : "No user"}</span>
+          <button
+            data-testid="login-btn"
+            onClick={async () => await login("test@example.com", "password123")}
+          >
+            Login
+          </button>
+        </div>
+      );
     }
-    render(
+
+    const { getByTestId } = render(
       <AuthProvider>
-        <UserComponent />
+        <TestComponent />
       </AuthProvider>
     );
-    expect(screen.getByText("true")).toBeInTheDocument();
+
+    // Al principio no deberia existir
+    expect(getByTestId("user").textContent).toBe("No user");
+
+    // Se activa el boton
+    fireEvent.click(getByTestId("login-btn"));
+
+    // Se espera a que signInWithEmailAndPassword devuelva el email
+    await waitFor(() =>
+      expect(getByTestId("user").textContent).toBe("test@example.com")
+    );
   });
 });
