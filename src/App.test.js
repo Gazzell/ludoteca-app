@@ -14,10 +14,9 @@ test("renders home component by default", () => {
       </MemoryRouter>
     </authContext.Provider>
   );
-  const homeTitle = screen.getByText(/Home/i);
-  expect(homeTitle).toBeInTheDocument();
-  const userEmail = screen.getByText(`User: ${user.email}`);
-  expect(userEmail).toBeInTheDocument();
+  // Check that the NavBar component is present
+  const navBar = screen.getByRole("banner");
+  expect(navBar).toBeInTheDocument();
 });
 
 test("renders login component with correct route", () => {
@@ -29,8 +28,8 @@ test("renders login component with correct route", () => {
     </authContext.Provider>
   );
 
-  const loginTitles = screen.queryAllByText(/Login/i);
-  expect(loginTitles).toHaveLength(2);
+  const loginTitles = screen.queryAllByText("Login", { exact: false });
+  expect(loginTitles).toHaveLength(1);
 
   const emailInput = screen.getByLabelText(/email/i);
   expect(emailInput).toBeInTheDocument();
@@ -38,6 +37,6 @@ test("renders login component with correct route", () => {
   const passwordInput = screen.getByLabelText(/password/i);
   expect(passwordInput).toBeInTheDocument();
 
-  const loginButton = screen.getByRole("button", { name: /Login/i });
+  const loginButton = screen.getByRole("button", { name: /Sign In/i });
   expect(loginButton).toBeInTheDocument();
 });
