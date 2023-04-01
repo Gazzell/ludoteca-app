@@ -15,11 +15,4 @@ export function Home() {
       <NavBar onLogout={handleLogout} user={user}></NavBar>
     </Container>
   );
-  /*return (
-    <div>
-      <div>Home</div>
-      <div>User: {user.email}</div>
-      <button onClick={handleLogout}>logout</button>
-    </div>
-  );*/
 }
