@@ -1,12 +1,18 @@
 import React from "react";
 import { useAuth } from "../context/authContext";
+import { Container } from "@mui/material";
+import { NavBar } from "./NavBar/NavBar";
 
 export function Home() {
-  const { user } = useAuth();
+  const { user, logout, loading } = useAuth();
+  const handleLogout = async () => {
+    await logout();
+  };
+  if (loading) return <h1>Loading</h1>;
+
   return (
-    <div>
-      <div>Home</div>
-      <div>User: {user.email}</div>
-    </div>
+    <Container maxWidth="lg">
+      <NavBar onLogout={handleLogout} user={user}></NavBar>
+    </Container>
   );
 }
