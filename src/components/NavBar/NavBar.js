@@ -39,9 +39,15 @@ export function NavBar({ user, onLogout }) {
       <Toolbar sx={{ toolbar }}>
         {user && (
           <Box sx={{ profile }}>
-            <Typography sx={userName} variant="h7">
-              {user?.email}
-            </Typography>
+            {user?.rol === "superuser" ? (
+              <Typography sx={userName} variant="h7">
+                {user?.email}&nbsp;<strong>(ADMIN)</strong>
+              </Typography>
+            ) : (
+              <Typography sx={userName} variant="h7">
+                {user?.email}
+              </Typography>
+            )}
             <Button
               variant="contained"
               sx={logout}

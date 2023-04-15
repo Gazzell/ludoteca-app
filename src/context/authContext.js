@@ -4,7 +4,8 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { auth } from "../firebaseConf";
+import { auth, firestore } from "../firebaseConf";
+import { doc, getDoc } from "firebase/firestore";
 
 export const authContext = createContext();
 
@@ -18,6 +19,13 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  async function getRol(uid) {
+    const docRef = doc(firestore, `users/${uid}`);
+    const docData = await getDoc(docRef);
+    const finalDoc = docData.data().rol;
+    return finalDoc;
+  }
+
   const login = async (email, password) => {
     const userCredentials = await signInWithEmailAndPassword(
       auth,
@@ -25,12 +33,25 @@ export function AuthProvider({ children }) {
       password
     );
     console.log(userCredentials);
+    const currentUser = userCredentials.user;
+    const rol = await getRol(currentUser.uid);
+    currentUser.rol = rol;
   };
+
   const logout = () => signOut(auth);
+
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
+      if (currentUser) {
+        getRol(currentUser.uid).then((rol) => {
+          currentUser.rol = rol;
+          setUser(currentUser);
+          setLoading(false);
+        });
+      } else {
+        setUser(null);
+        setLoading(false);
+      }
     });
   }, []);
 
