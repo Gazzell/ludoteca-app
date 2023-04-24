@@ -1,3 +1,4 @@
 {
-  "**/*.{js,jsx}": ["eslint --config .eslintrc", "npm test"]
+  "!**/*.test.js": "eslint --config .eslintrc.json",
+  "**/*.{js,jsx}": ["eslint --config .eslintrc.json", "npm test"]
 }
