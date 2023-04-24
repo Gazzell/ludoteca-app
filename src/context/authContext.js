@@ -36,6 +36,7 @@ export function AuthProvider({ children }) {
     const currentUser = userCredentials.user;
     const rol = await getRol(currentUser.uid);
     currentUser.rol = rol;
+    setUser(currentUser);
   };
 
   const logout = () => signOut(auth);
