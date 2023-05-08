@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../context/authContext";
 import { Container } from "@mui/material";
 import { NavBar } from "./NavBar/NavBar";
-
+import { Games } from "./Games/Games.js";
 export function Home() {
   const { user, logout, loading } = useAuth();
   const handleLogout = async () => {
@@ -13,6 +13,7 @@ export function Home() {
   return (
     <Container maxWidth="lg">
       <NavBar onLogout={handleLogout} user={user}></NavBar>
+      <Games />
     </Container>
   );
 }
