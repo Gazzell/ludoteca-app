@@ -10,7 +10,7 @@ import {
   logout,
   userName,
   brandContainer,
-} from "./styles";
+} from "./Styles";
 
 export function NavBar({ user, onLogout }) {
   return (
