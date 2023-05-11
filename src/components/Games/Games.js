@@ -26,9 +26,15 @@ export function Games() {
   }, []);
 
   return (
-    <Grid container alignItems="strech" spacing={2}>
+    <Grid
+      container
+      align="center"
+      justify="center"
+      alignItems="center"
+      spacing={2}
+    >
       {games.map((game) => (
-        <Grid key={game.id} item xs={12} sm={6}>
+        <Grid key={game.id} item xs={12} sm={6} md={4} lg={4}>
           <Game game={game} />
         </Grid>
       ))}

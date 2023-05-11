@@ -11,7 +11,7 @@ export const fullHeightCard = {
   height: "100%",
 };
 export const card = {
-  width: "60%",
+  width: "65%",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -23,15 +23,18 @@ export const grid = {
   display: "flex",
 };
 export const title = {
-  padding: "0 16px",
+  padding: "0 3px",
+  fontWeight: "medium",
+  whiteSpace: "nowrap",
 };
 export const cardActions = {
   marginBottom: "8px",
   marginRight: "8px",
   marginLeft: "8px",
-  padding: "0 16px 8px 16px",
+  padding: "13px 5px 6px 8px",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center",
+  gap: "10px",
 };
 export const cardAction = {
   display: "block",

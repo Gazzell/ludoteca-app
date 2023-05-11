@@ -19,12 +19,6 @@ describe("Game", () => {
     expect(screen.getByText(mockGame.editorial)).toBeInTheDocument();
 
     expect(
-      screen.getByText(
-        `${mockGame.playerNum} Jugadores // ${mockGame.timeMins} minutos`
-      )
-    ).toBeInTheDocument();
-
-    expect(
       screen.getByRole("button", { name: "Detalles" })
     ).toBeInTheDocument();
     expect(

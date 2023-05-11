@@ -24,18 +24,19 @@ export const toolbar = {
 };
 export const profile = {
   display: "flex",
-  justifyContent: "space-between",
-  width: "400px",
+  width: "auto",
   alignItems: "center",
+  gap: "10px",
   [theme.breakpoints.down("sm")]: {
     width: "auto",
-    marginTop: 20,
-    justifyContent: "center",
+    marginTop: 0,
+    alignItems: "center",
+    direction: "column-reverse",
+    justifyContent: "space-around",
   },
 };
 export const logout = {
   display: "inline",
-  marginLeft: "20px",
 };
 export const userName = {
   display: "inline",

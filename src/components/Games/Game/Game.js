@@ -2,14 +2,19 @@ import React from "react";
 import {
   Card,
   CardActions,
-  CardContent,
   CardMedia,
   Button,
   Typography,
   Box,
 } from "@mui/material";
-import { media, card, title, cardActions } from "./styles";
+import { media, card, cardActions, title } from "./styles";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
+function truncarTexto(texto, longitudMaxima) {
+  return texto.length > longitudMaxima
+    ? `${texto.substring(0, longitudMaxima)}...`
+    : texto;
+}
 
 export function Game({ game }) {
   // const formattedDate = game.adquisionDate.toDate();
@@ -22,8 +27,8 @@ export function Game({ game }) {
         title={game.editorial}
       />
       <Box position="absolute" top="20px" left="20px" color="white">
-        <Typography variant="h5" sx={{ fontWeight: "medium" }}>
-          {game.titulo}
+        <Typography sx={title} variant="h5">
+          {truncarTexto(game.titulo, 8)}
         </Typography>
         <Typography variant="body2">
           <Typography component="span">
@@ -34,26 +39,12 @@ export function Game({ game }) {
           </Typography>
         </Typography>
       </Box>
-      <Box position="absolute" top="20px" right="20px" color="white">
+      <Box position="absolute" top="10px" right="10px" color="white">
         <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-          <MoreHorizIcon fontSize="large" />
+          <MoreHorizIcon fontSize="medium" />
         </Button>
       </Box>
 
-      <Box display="flex" justifyContent="space-between" margin="13px">
-        <Typography
-          variant="body3"
-          text="textSecondary"
-          sx={{ fontWeight: "medium" }}
-        >
-          {game.playerNum + " Jugadores // " + game.timeMins + " minutos"}
-        </Typography>
-      </Box>
-      <CardContent>
-        <Typography sx={title} variant="h6" gutterBottom>
-          {}
-        </Typography>
-      </CardContent>
       <CardActions sx={cardActions}>
         <Button
           size="small"
