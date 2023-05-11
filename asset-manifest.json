@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ludoteca-app/static/css/main.073c9b0a.css",
-    "main.js": "/ludoteca-app/static/js/main.56fbe9e9.js",
+    "main.js": "/ludoteca-app/static/js/main.fd909b81.js",
     "static/js/787.5eaa4fe9.chunk.js": "/ludoteca-app/static/js/787.5eaa4fe9.chunk.js",
     "index.html": "/ludoteca-app/index.html",
     "main.073c9b0a.css.map": "/ludoteca-app/static/css/main.073c9b0a.css.map",
-    "main.56fbe9e9.js.map": "/ludoteca-app/static/js/main.56fbe9e9.js.map",
+    "main.fd909b81.js.map": "/ludoteca-app/static/js/main.fd909b81.js.map",
     "787.5eaa4fe9.chunk.js.map": "/ludoteca-app/static/js/787.5eaa4fe9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.56fbe9e9.js"
+    "static/js/main.fd909b81.js"
   ]
 }
