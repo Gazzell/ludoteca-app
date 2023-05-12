@@ -1,8 +1,8 @@
 import React from "react";
-import { AppBar, Typography, Toolbar, Button } from "@mui/material";
+import { AppBar, Typography, Toolbar, Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
-import { Box } from "@mui/system";
+// import { Box } from "@mui/system";
 import {
   appBar,
   toolbar,
@@ -38,7 +38,12 @@ export function NavBar({ user, onLogout }) {
       </Typography>
       <Toolbar sx={{ toolbar }}>
         {user && (
-          <Box sx={{ profile }}>
+          <Grid
+            container
+            sx={profile}
+            direction="row"
+            justifyContent="space-around"
+          >
             {user?.rol === "superuser" ? (
               <Typography sx={userName} variant="h7">
                 {user?.email}&nbsp;<strong>(ADMIN)</strong>
@@ -56,7 +61,7 @@ export function NavBar({ user, onLogout }) {
             >
               Logout
             </Button>
-          </Box>
+          </Grid>
         )}
       </Toolbar>
     </AppBar>
