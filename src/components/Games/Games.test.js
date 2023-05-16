@@ -1,6 +1,7 @@
 import { Games } from "./Games";
 import { render, waitFor } from "@testing-library/react";
-import { collection, getDocs } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("firebase/firestore");
 
@@ -40,7 +41,11 @@ describe("Games", () => {
       },
     }));
 
-    const { getByText } = render(<Games />);
+    const { getByText } = render(
+      <MemoryRouter>
+        <Games />
+      </MemoryRouter>
+    );
 
     await waitFor(() => {
       expect(getDocs).toHaveBeenCalled();
