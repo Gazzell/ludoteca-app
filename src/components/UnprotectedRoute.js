@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-export function ProtectedRoute({ children }) {
+export function UnprotectedRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading)
     return (
@@ -11,6 +11,6 @@ export function ProtectedRoute({ children }) {
         <CircularProgress style={{ width: "100px", height: "100px" }} />
       </Box>
     );
-  if (!user) return <Navigate to="/login" />;
+  if (user) return <Navigate to="/" />;
   return <>{children}</>;
 }
