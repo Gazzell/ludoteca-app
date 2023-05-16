@@ -27,7 +27,7 @@ export function Login() {
     e.preventDefault();
     try {
       await login(user.email, user.password);
-      navigate("/");
+      navigate("/games");
     } catch (error) {
       setError(error.message);
     }
