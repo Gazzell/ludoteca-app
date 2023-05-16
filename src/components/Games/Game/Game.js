@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { media, card, cardActions, title } from "./styles";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Link } from "react-router-dom";
 
 function truncarTexto(texto, longitudMaxima) {
   return texto.length > longitudMaxima
@@ -17,7 +18,6 @@ function truncarTexto(texto, longitudMaxima) {
 }
 
 export function Game({ game }) {
-  // const formattedDate = game.adquisionDate.toDate();
   return (
     <Card sx={card}>
       <CardMedia
@@ -55,6 +55,8 @@ export function Game({ game }) {
           Reservar
         </Button>
         <Button
+          component={Link}
+          to="/game/123"
           size="small"
           variant="contained"
           color="secondary"

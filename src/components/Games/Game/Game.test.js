@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Game } from "./Game";
+import { MemoryRouter } from "react-router-dom";
 
 const mockGame = {
   id: 1,
@@ -13,17 +14,18 @@ const mockGame = {
 
 describe("Game", () => {
   it("renders game info correctly", () => {
-    render(<Game game={mockGame} />);
+    render(
+      <MemoryRouter>
+        <Game game={mockGame} />
+      </MemoryRouter>
+    );
 
     expect(screen.getByText(mockGame.titulo)).toBeInTheDocument();
     expect(screen.getByText(mockGame.editorial)).toBeInTheDocument();
 
-    expect(
-      screen.getByRole("button", { name: "Detalles" })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "Reservar" })
-    ).toBeInTheDocument();
+    const detallesButton = screen.getByText("Detalles");
+    expect(detallesButton).toBeInTheDocument();
+    const reservarButton = screen.getByText("Reservar");
+    expect(reservarButton).toBeInTheDocument();
   });
-  //it("calls onClick handlers when buttons are clicked", () => {
 });
