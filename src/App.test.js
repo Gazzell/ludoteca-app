@@ -15,8 +15,8 @@ test("renders home component by default", () => {
     </authContext.Provider>
   );
   // Check that the NavBar component is present
-  const navBar = screen.getByRole("banner");
-  expect(navBar).toBeInTheDocument();
+  const gamesComponent = screen.getByRole("games-component");
+  expect(gamesComponent).toBeInTheDocument();
 });
 
 test("renders login component with correct route", () => {
