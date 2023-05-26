@@ -6,10 +6,11 @@ import {
   Button,
   Typography,
   Box,
+  ButtonBase,
 } from "@mui/material";
-import { media, card, cardActions, title } from "./styles";
+import { media, card, cardActions, title, cardAction } from "./styles";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function truncarTexto(texto, longitudMaxima) {
   return texto.length > longitudMaxima
@@ -18,33 +19,38 @@ function truncarTexto(texto, longitudMaxima) {
 }
 
 export function Game({ game }) {
+  const navigate = useNavigate();
+  const openGame = () => {
+    navigate(`/game/${game.id}`);
+  };
   return (
     <Card sx={card}>
-      <CardMedia
-        role="img"
-        sx={media}
-        image={game.imageUrl}
-        title={game.editorial}
-      />
-      <Box position="absolute" top="20px" left="20px" color="white">
-        <Typography sx={title} variant="h5">
-          {truncarTexto(game.titulo, 8)}
-        </Typography>
-        <Typography variant="body2">
-          <Typography component="span">
-            <Typography component="span">De </Typography>
-            <Typography component="span" fontWeight={"medium"}>
-              {game.editorial}
+      <ButtonBase sx={cardAction} onClick={openGame}>
+        <CardMedia
+          role="img"
+          sx={media}
+          image={game.imageUrl}
+          title={game.editorial}
+        />
+        <Box position="absolute" top="20px" left="20px" color="white">
+          <Typography sx={title} variant="h5">
+            {truncarTexto(game.titulo, 8)}
+          </Typography>
+          <Typography variant="body2">
+            <Typography component="span">
+              <Typography component="span">De </Typography>
+              <Typography component="span" fontWeight={"medium"}>
+                {game.editorial}
+              </Typography>
             </Typography>
           </Typography>
-        </Typography>
-      </Box>
-      <Box position="absolute" top="10px" right="10px" color="white">
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-          <MoreHorizIcon fontSize="medium" />
-        </Button>
-      </Box>
-
+        </Box>
+        <Box position="absolute" top="10px" right="10px" color="white">
+          <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+            <MoreHorizIcon fontSize="medium" />
+          </Button>
+        </Box>
+      </ButtonBase>
       <CardActions sx={cardActions}>
         <Button
           size="small"
@@ -55,12 +61,10 @@ export function Game({ game }) {
           Reservar
         </Button>
         <Button
-          component={Link}
-          to="/game/123"
           size="small"
           variant="contained"
           color="secondary"
-          onClick={() => {}}
+          onClick={openGame}
         >
           Detalles
         </Button>
