@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Paper,
   Typography,
@@ -22,7 +22,7 @@ export function GameDetail() {
   const { id } = useParams();
   console.log("GAME DETAILS");
 
-  const getGame = async () => {
+  const getGame = useCallback(async () => {
     console.log(id);
     const docRef = await doc(firestore, "games", id);
     const querySnapshot = await getDoc(docRef);
@@ -34,11 +34,11 @@ export function GameDetail() {
       console.log("El juego no existe.");
       setGame(null);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     getGame();
-  }, []);
+  }, [getGame]);
 
   const theme = createTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));
