@@ -40,24 +40,11 @@ export function GameDetail() {
     getGame();
   }, []);
 
-  // function convertTimestamp(timestamp) {
-  //   let date = timestamp.Date();
-  //   let mm = date.getMonth();
-  //   let dd = date.getDate();
-  //   let yyyy = date.getFullYear();
-
-  //   date = mm + "/" + dd + "/" + yyyy;
-  //   setIsLoading(false);
-  //   return date;
-  // }
-
   const theme = createTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isSmScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isLgScreen = useMediaQuery(theme.breakpoints.up("md"));
   console.log(game.titulo);
-
-  // const formattedDate = convertTimestamp(game.adquisionDate);
 
   return (
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
