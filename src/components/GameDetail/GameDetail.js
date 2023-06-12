@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useContext } from "react";
 import {
   Paper,
   Typography,
@@ -9,36 +9,17 @@ import {
   Box,
 } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
-import { firestore } from "../../firebaseConf";
 import { card, section, imageSection, media } from "./styles";
-import { getDoc, doc } from "firebase/firestore";
 import { createTheme } from "@mui/material";
+import { gamesContext } from "../../context/gamesContext";
 
 export function GameDetail() {
-  const [game, setGame] = useState({});
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // const navigate = useNavigate();
   const { id } = useParams();
-  console.log("GAME DETAILS");
-
-  const getGame = useCallback(async () => {
-    console.log(id);
-    const docRef = await doc(firestore, "games", id);
-    const querySnapshot = await getDoc(docRef);
-    if (querySnapshot.exists()) {
-      const finalDoc = { ...querySnapshot.data(), id: querySnapshot.id };
-      console.log(finalDoc);
-      setGame(finalDoc);
-    } else {
-      console.log("El juego no existe.");
-      setGame(null);
-    }
-  }, [id]);
+  const { game, getGame } = useContext(gamesContext);
 
   useEffect(() => {
-    getGame();
-  }, [getGame]);
+    getGame(id);
+  }, [getGame, id]);
 
   const theme = createTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));

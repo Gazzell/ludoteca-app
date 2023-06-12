@@ -11,6 +11,7 @@ import { Container } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { GameDetail } from "./components/GameDetail/GameDetail";
+import { GamesProvider } from "./context/gamesContext";
 
 function App() {
   const { user, logout, loading } = useAuth();
@@ -49,7 +50,9 @@ function App() {
           path="game/:id"
           element={
             <ProtectedRoute>
-              <GameDetail />
+              <GamesProvider>
+                <GameDetail />
+              </GamesProvider>
             </ProtectedRoute>
           }
         />
