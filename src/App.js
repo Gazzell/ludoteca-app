@@ -10,6 +10,8 @@ import { useAuth } from "./context/authContext";
 import { Container } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { GameDetail } from "./components/GameDetail/GameDetail";
+import { GamesProvider } from "./context/gamesContext";
 
 function App() {
   const { user, logout, loading } = useAuth();
@@ -41,6 +43,16 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="game/:id"
+          element={
+            <ProtectedRoute>
+              <GamesProvider>
+                <GameDetail />
+              </GamesProvider>
             </ProtectedRoute>
           }
         />
